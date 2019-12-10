@@ -1,4 +1,4 @@
-from typing import NamedTuple, Iterable, Tuple, Any
+from typing import (Dict, NamedTuple)
 
 from config import (K, BUCKETS, MAX_FIND_PEERS)
 from enr import ENR
@@ -8,7 +8,7 @@ from messages.nodes import NodesMessage
 from util import log_distance_sim
 
 
-class FindTaskStatus(NamedTuple):
+class FindPeersStatus(NamedTuple):
     next_distance: int
     total_discovered: int
 
@@ -16,9 +16,12 @@ class FindTaskStatus(NamedTuple):
     def default(cls):
         return cls(1, 0)
 
+    def from_values(cls, next_distance: int, total_discovered: int):
+        return cls(next_distance, total_discovered)
 
-class FindPeersTask():
-    tasks: dict
+
+class FindPeersRoutine():
+    tasks: Dict[ENR, FindPeersStatus]
     home: ENR
     table: KademliaTable
 
@@ -30,8 +33,8 @@ class FindPeersTask():
     def generate(self, enr: ENR) -> FindNodeMessage:
         if enr not in self.tasks:
             # requests are started from bucket #1
-            self.tasks[enr] = FindTaskStatus()
-        return FindNodeMessage(self.tasks[enr].next_distance)
+            self.tasks[enr] = FindPeersStatus.default()
+        return FindNodeMessage(self.tasks[enr].next_distance, self.home)
 
     def parse(self, nodes: NodesMessage):
         if len(nodes.get()) == 0:

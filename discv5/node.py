@@ -7,7 +7,7 @@ from kademlia_table import (KademliaTable)
 from messages.findnode import FindNodeMessage
 from messages.message import Message
 from messages.nodes import NodesMessage
-from task.find_peers import FindPeersTask
+from tasks.find_peers import FindPeersRoutine
 
 
 class FindPeerTaskStatus(NamedTuple):
@@ -25,7 +25,7 @@ class FindPeerTaskStatus(NamedTuple):
 class Node():
     home: ENR
     table: KademliaTable
-    find_peers: FindPeersTask
+    find_peers: FindPeersRoutine
     status: FindPeerTaskStatus
     send_callback: Callable[[Message, ENR], None]
 
@@ -33,7 +33,7 @@ class Node():
         self.home = home
         self.send_callback = send_callback
         self.table = KademliaTable(home, boot_nodes)
-        self.find_peers = FindPeersTask(home, self.table)
+        self.find_peers = FindPeersRoutine(home, self.table)
         self.status = FindPeerTaskStatus(list(), 0)
 
     # forces one step of node life

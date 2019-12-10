@@ -12,6 +12,6 @@ class ENR(NamedTuple):
 
     def __eq__(self, other):
         """Overrides the default implementation"""
-        if self == other:
+        if self is other:
             return True
         return self.id == other.id
