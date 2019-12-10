@@ -14,10 +14,9 @@ class FindPeerTaskStatus(NamedTuple):
     nodes: deque
     current_bucket: int
 
-    def __init__(self, nodes: list, current_bucket: int) -> None:
-        super.__init__(self)
-        self.nodes = deque(nodes)
-        self.current_bucket = current_bucket
+    @classmethod
+    def from_values(cls, nodes: list, current_bucket: int):
+        return cls(deque(nodes), current_bucket)
 
     def is_empty(self) -> bool:
         return len(self.nodes) == 0

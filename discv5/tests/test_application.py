@@ -1,5 +1,7 @@
 import os
 
+import pytest
+
 from enr import ENR
 from messages.message import Message
 from node import Node
@@ -23,6 +25,7 @@ class Router():
             raise Exception("Recipient " + recipient + " not found!")
 
 
+@pytest.mark.skip(reason="in development")
 def p2p_test():
     router = Router()
     enr1 = ENR.from_values("127.0.0.1", 30303, os.urandom(32))
