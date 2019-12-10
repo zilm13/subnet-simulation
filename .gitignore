@@ -1,2 +1,7 @@
+# Python specific
 *.pyc
+**/venv/
+
+# Development IDE specific
 .idea/
+*.iml

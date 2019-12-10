@@ -1,4 +1,4 @@
-
+# TODO: Start network layer with NS3 here
 import ns.core
 import ns.network
 import ns.csma

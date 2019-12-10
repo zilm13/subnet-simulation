@@ -1,4 +1,5 @@
 from math import ceil
+
 from config import DISTANCE_DIVISOR
 
 # Default id size we respect to

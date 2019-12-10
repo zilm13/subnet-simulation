@@ -1,13 +1,13 @@
 from collections import deque
 from typing import (NamedTuple, Callable)
 
-from kademlia_table import (KademliaTable, Bucket)
-from task.find_peers import FindPeersTask
-from enr import ENR
 from config import BUCKETS
-from messages.message import Message
+from enr import ENR
+from kademlia_table import (KademliaTable)
 from messages.findnode import FindNodeMessage
+from messages.message import Message
 from messages.nodes import NodesMessage
+from task.find_peers import FindPeersTask
 
 
 class FindPeerTaskStatus(NamedTuple):
@@ -62,5 +62,3 @@ class Node():
 
     def table(self) -> KademliaTable:
         return self.table
-
-

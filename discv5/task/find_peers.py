@@ -1,11 +1,11 @@
 from typing import NamedTuple
 
-from ../enr import ENR
-from ../util import log_distance_sim
-from ../kademlia_table import KademliaTable
-from ../config import (K, BUCKETS, MAX_FIND_PEERS)
-from ../messages/findnode import FindNodeMessage
-from ../messages/nodes import NodesMessage
+from config import (K, BUCKETS, MAX_FIND_PEERS)
+from enr import ENR
+from kademlia_table import KademliaTable
+from messages.findnode import FindNodeMessage
+from messages.nodes import NodesMessage
+from util import log_distance_sim
 
 
 class FindTaskStatus(NamedTuple):
@@ -59,5 +59,3 @@ class FindPeersTask():
             del task
         else:
             task.next_distance = next_bucket
-
-

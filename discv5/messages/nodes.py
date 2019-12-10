@@ -1,5 +1,5 @@
-from ../enr import ENR
-from message import Message
+from enr import ENR
+from messages.message import Message
 
 
 class NodesMessage(Message):

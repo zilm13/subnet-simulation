@@ -1,7 +1,8 @@
 from collections import deque
+
+from config import (K, BUCKETS)
 from enr import ENR
 from util import log_distance_sim
-from config import (K, BUCKETS)
 
 
 class Bucket():

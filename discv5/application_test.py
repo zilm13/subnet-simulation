@@ -1,8 +1,8 @@
 import os
 
 from enr import ENR
-from node import Node
 from messages.message import Message
+from node import Node
 from util import log_distance_sim
 
 
@@ -30,7 +30,7 @@ def p2p_test():
     enr3 = ENR("127.0.0.3", 30303, os.urandom(32))
     n1 = Node(enr1, [enr2, enr3], router.send)
     n2 = Node(enr2, [enr1], router.send)
-    for i in range (0, 32):
+    for i in range(0, 32):
         n1.tick()
         n2.tick()
     id2_id3_distance = log_distance_sim(enr2.id, enr3.id)
