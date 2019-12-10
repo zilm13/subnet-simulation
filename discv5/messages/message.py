@@ -6,6 +6,3 @@ class Message(object):
 
     def __init__(self, sender: ENR) -> None:
         self.sender = sender
-
-    def sender(self) -> ENR:
-        return self.sender

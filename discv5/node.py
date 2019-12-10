@@ -54,8 +54,8 @@ class Node():
 
     def handle(self, message: Message) -> None:
         if type(message) == FindNodeMessage:
-            reply = NodesMessage(self.table.find(message.get()), self.home)
-            self.send(reply, message.sender())
+            reply = NodesMessage(self.table.find(message.distance), self.home)
+            self.send(reply, message.sender)
         else:
             raise Exception("Not supported message")
 

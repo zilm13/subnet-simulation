@@ -37,18 +37,19 @@ class FindPeersRoutine():
         return FindNodeMessage(self.tasks[enr].next_distance, self.home)
 
     def parse(self, nodes: NodesMessage):
-        if len(nodes.get()) == 0:
+        if len(nodes.nodes) == 0:
             return
-        current_bucket = log_distance_sim(self.home.id, nodes.get()[0].id)
+        current_bucket = log_distance_sim(self.home.id, nodes.nodes[0].id)
         nodes_in_bucket = 0
-        task = self.tasks[nodes.sender()]
-        for node in nodes.get():
+        task = self.tasks[nodes.sender]
+        total_discovered = task.total_discovered
+        for node in nodes.nodes:
             node_bucket = log_distance_sim(self.home.id, node.id)
             if node_bucket != current_bucket:
                 current_bucket = node_bucket
                 nodes_in_bucket = 0
             nodes_in_bucket += 1
-            task.total_discovered += 1
+            total_discovered += 1
             self.table.put(node)
         next_bucket = current_bucket
 
@@ -60,4 +61,4 @@ class FindPeersRoutine():
         if next_bucket > BUCKETS or task.total_discovered >= MAX_FIND_PEERS:
             del task
         else:
-            task.next_distance = next_bucket
+            self.tasks[nodes.sender] = FindPeersStatus(next_bucket, total_discovered)
