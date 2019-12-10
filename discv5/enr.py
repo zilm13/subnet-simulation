@@ -1,4 +1,4 @@
-from typing import NamedTuple
+from typing import NamedTuple, Iterable, Tuple, Any
 
 
 class ENR(NamedTuple):
@@ -6,10 +6,9 @@ class ENR(NamedTuple):
     port: int
     id: bytes
 
-    def __init__(self, ip: str, port: int, id: bytes) -> None:
-        self.ip = ip
-        self.port = port
-        self.id = id
+    @classmethod
+    def from_values(cls, ip: str, port: int, id_: bytes):
+        return cls(ip, port, id_)
 
     def __eq__(self, other):
         """Overrides the default implementation"""

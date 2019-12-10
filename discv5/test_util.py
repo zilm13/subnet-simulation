@@ -1,6 +1,19 @@
 import pytest
 
+from enr import ENR
 from util import (log_distance, log_distance_sim)
+
+
+@pytest.mark.parametrize(
+    "ip,port,id_hex,expected",
+    (
+            ("127.0.0.1", 30303,
+             "0000000000000000000000000000000000000000000000000000000000000001", "127.0.0.1"),
+    )
+)
+def enr_test(ip, port, id_hex, expected):
+    enr1 = ENR.from_values(ip, port, bytes.fromhex(id_hex))
+    assert enr1.ip == expected
 
 
 @pytest.mark.parametrize(

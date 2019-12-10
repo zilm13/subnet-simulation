@@ -25,9 +25,9 @@ class Router():
 
 def p2p_test():
     router = Router()
-    enr1 = ENR("127.0.0.1", 30303, os.urandom(32))
-    enr2 = ENR("127.0.0.2", 30303, os.urandom(32))
-    enr3 = ENR("127.0.0.3", 30303, os.urandom(32))
+    enr1 = ENR.from_values("127.0.0.1", 30303, os.urandom(32))
+    enr2 = ENR.from_values("127.0.0.2", 30303, os.urandom(32))
+    enr3 = ENR.from_values("127.0.0.3", 30303, os.urandom(32))
     n1 = Node(enr1, [enr2, enr3], router.send)
     n2 = Node(enr2, [enr1], router.send)
     for i in range(0, 32):

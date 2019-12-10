@@ -1,4 +1,4 @@
-from typing import NamedTuple
+from typing import NamedTuple, Iterable, Tuple, Any
 
 from config import (K, BUCKETS, MAX_FIND_PEERS)
 from enr import ENR
@@ -12,10 +12,9 @@ class FindTaskStatus(NamedTuple):
     next_distance: int
     total_discovered: int
 
-    def __init__(self) -> None:
-        super.__init__(self)
-        self.next_distance = 1
-        self.total_discovered = 0
+    @classmethod
+    def default(cls):
+        return cls(1, 0)
 
 
 class FindPeersTask():
