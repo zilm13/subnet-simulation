@@ -9,9 +9,9 @@ def test_find_peers():
     enr1 = ENR.from_values("127.0.0.1", 30303,
                            bytes.fromhex("0000000000000000000000000000000000000000000000000000000000000000"))
     enr2 = ENR.from_values("127.0.0.2", 30303,
-                           bytes.fromhex("000000000000000000000000000000000000000000000000000000000000000f"))
+                           bytes.fromhex("000000000000000000000000000000000000000000000000000000ff77555555"))
     enr3 = ENR.from_values("127.0.0.3", 30303,
-                           bytes.fromhex("00000000000000000000000000000000000000000000000000000000ffffffff"))
+                           bytes.fromhex("000000000000000000000000000000000000000000000000000000ffffffffff"))
     table = KademliaTable(enr1, [enr2, enr3])
     find_peers = FindPeersRoutine(enr1, table)
     find_node_message1 = find_peers.generate(enr2)
@@ -19,13 +19,15 @@ def test_find_peers():
     assert find_node_message1.distance == 1
     nodes = NodesMessage([enr3], enr2)
     assert log_distance_sim(enr2.id, enr3.id) == 4
+    # make sure it's different to clarify absence of base bug
+    assert log_distance_sim(enr1.id, enr3.id) == 5
     find_peers.parse(nodes)
 
     # latest peer was from 4th bucket but there was only 1 from it so it's not 100% that 4th bucket is over
     find_node_message2 = find_peers.generate(enr2)
     assert find_node_message2.distance == 4
 
-    # nothing changed until parse
+    # nothing changed until new parse
     find_node_message3 = find_peers.generate(enr2)
     assert find_node_message3.distance == 4
 

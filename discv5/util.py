@@ -20,6 +20,6 @@ def log_distance(id1: bytes, id2: bytes) -> int:
     return diff.bit_length()
 
 
-# Simplified distance to reduce number of distances for simulation
+# Simplified distance to reduce number of possible distances for simulation
 def log_distance_sim(id1: bytes, id2: bytes) -> int:
     return ceil(log_distance(id1, id2) / DISTANCE_DIVISOR)
