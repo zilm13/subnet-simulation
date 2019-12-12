@@ -5,6 +5,7 @@ import ns.core
 import ns.internet
 import ns.network
 import ns.point_to_point
+from .udp_echo_server_rewrite import UdpEchoServer
 import pdb
 
 ns.core.LogComponentEnable("UdpEchoClientApplication", ns.core.LOG_LEVEL_INFO)
@@ -29,7 +30,7 @@ address.SetBase(ns.network.Ipv4Address("10.1.1.0"),
 interfaces = address.Assign(devices)
 ######
 serverNodes = [nodes.Get(1)]
-echoServer = ns.applications.UdpEchoServer()
+echoServer = UdpEchoServer()
 echoServer.SetAttribute("Port", ns.core.UintegerValue(13))
 for node in serverNodes:
     # pdb.set_trace()
