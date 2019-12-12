@@ -5,3 +5,6 @@
 # Development IDE specific
 .idea/
 *.iml
+
+# NS-3 bindings
+discv5/ns/
