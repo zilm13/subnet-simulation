@@ -36,9 +36,7 @@ serverApps.Stop(ns.core.Seconds(10.0))
 
 echoClient = ns.applications.UdpEchoClient()
 nodes.Get(0).AddApplication(echoClient)
-# FIXME: AddressValue is not public
-echoClient.SetAttribute("RemoteAddress", ns.core.AddressValue(interfaces.GetAddress(1)))
-echoClient.SetAttribute("RemotePort", ns.core.UintegerValue(9))
+echoClient.SetRemote(interfaces.GetAddress(1), 9)
 echoClient.SetAttribute("MaxPackets", ns.core.UintegerValue(1))
 echoClient.SetAttribute("Interval", ns.core.TimeValue(ns.core.Seconds(1.0)))
 echoClient.SetAttribute("PacketSize", ns.core.UintegerValue(1024))
