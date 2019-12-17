@@ -20,7 +20,7 @@ In order to achieve research goals following steps are considered
 - Analyze alternatives candidates for subnet building (private validators network etc.)
 
 #### What's going on now?
-- Trying to implement [NS-3 UDP Echo Server](https://www.nsnam.org/doxygen/classns3_1_1_udp_echo_server.html) in Python to clarify sufficiency of NS-3 Python bindings for building applications.
+- Trying to implement NS-3 UDP Echo Client in C++ with Python callback for packet data to clarify possibility of calling Python's callbacks from custom NS-3 applications.
 #### What's expected next?
 - Adding network layer simulation with [NS3](https://www.nsnam.org/)
 
