@@ -40,6 +40,7 @@ echoClient.SetRemote(interfaces.GetAddress(1), 9)
 class Callback1(ns.applications.PythonCallback):
     a: int
     def __init__(self, a):
+        super().__init__()
         self.a = a
 
     def isOverridden(self) -> bool:
