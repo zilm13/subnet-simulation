@@ -20,7 +20,4 @@ In order to achieve research goals following steps are considered
 - Analyze alternatives candidates for subnet building (private validators network etc.)
 
 #### What's going on now?
-- Trying to implement NS-3 UDP Echo Client in C++ with Python callback for packet data to clarify possibility of calling Python's callbacks from custom NS-3 applications.
-#### What's expected next?
-- Adding network layer simulation with [NS3](https://www.nsnam.org/)
-
+- Put on hold as NS3 found to be not suitable for network application testing in Python
